@@ -19,6 +19,12 @@
 		387C319B2BEE5FDE00DEA413 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C319A2BEE5FDE00DEA413 /* HomeCollectionViewController.swift */; };
 		387C319D2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C319C2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift */; };
 		387C319F2BEE709500DEA413 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C319E2BEE709500DEA413 /* FlowLayout.swift */; };
+		D3D40B142BEF8F2B00F88FC8 /* LenguesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D40B132BEF8F2B00F88FC8 /* LenguesTableViewController.swift */; };
+		D3D40B172BEF8F6700F88FC8 /* LenguesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D40B152BEF8F6700F88FC8 /* LenguesTableViewCell.swift */; };
+		D3D40B182BEF8F6700F88FC8 /* LenguesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3D40B162BEF8F6700F88FC8 /* LenguesTableViewCell.xib */; };
+		D3D40B1D2BEF902A00F88FC8 /* TeamDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D40B1C2BEF902A00F88FC8 /* TeamDetailsViewController.swift */; };
+		D3D40B1F2BEF90A800F88FC8 /* PlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D40B1E2BEF90A800F88FC8 /* PlayerCollectionViewCell.swift */; };
+		D3D40B242BEF91B300F88FC8 /* FavoriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D40B232BEF91B300F88FC8 /* FavoriteTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +61,12 @@
 		387C319A2BEE5FDE00DEA413 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		387C319C2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCustomCell.swift; sourceTree = "<group>"; };
 		387C319E2BEE709500DEA413 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		D3D40B132BEF8F2B00F88FC8 /* LenguesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenguesTableViewController.swift; sourceTree = "<group>"; };
+		D3D40B152BEF8F6700F88FC8 /* LenguesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LenguesTableViewCell.swift; sourceTree = "<group>"; };
+		D3D40B162BEF8F6700F88FC8 /* LenguesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LenguesTableViewCell.xib; sourceTree = "<group>"; };
+		D3D40B1C2BEF902A00F88FC8 /* TeamDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailsViewController.swift; sourceTree = "<group>"; };
+		D3D40B1E2BEF90A800F88FC8 /* PlayerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCollectionViewCell.swift; sourceTree = "<group>"; };
+		D3D40B232BEF91B300F88FC8 /* FavoriteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +117,7 @@
 		387C31672BEE441300DEA413 /* SportsApp */ = {
 			isa = PBXGroup;
 			children = (
+				D3D40B0D2BEF8E7C00F88FC8 /* views */,
 				387C31B22BEF641D00DEA413 /* modules */,
 				387C31682BEE441300DEA413 /* AppDelegate.swift */,
 				387C316A2BEE441300DEA413 /* SceneDelegate.swift */,
@@ -137,6 +150,9 @@
 		387C31B22BEF641D00DEA413 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				D3D40B0C2BEF8E4300F88FC8 /* lengueList */,
+				D3D40B0B2BEF8E3300F88FC8 /* teamDetails */,
+				D3D40B0A2BEF8E0E00F88FC8 /* favorite */,
 				387C31B32BEF642800DEA413 /* home */,
 			);
 			path = modules;
@@ -150,6 +166,112 @@
 				387C319E2BEE709500DEA413 /* FlowLayout.swift */,
 			);
 			path = home;
+			sourceTree = "<group>";
+		};
+		D3D40B0A2BEF8E0E00F88FC8 /* favorite */ = {
+			isa = PBXGroup;
+			children = (
+				D3D40B222BEF919100F88FC8 /* model */,
+				D3D40B212BEF918800F88FC8 /* viewModel */,
+				D3D40B202BEF918200F88FC8 /* view */,
+			);
+			path = favorite;
+			sourceTree = "<group>";
+		};
+		D3D40B0B2BEF8E3300F88FC8 /* teamDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D3D40B1B2BEF8FF700F88FC8 /* model */,
+				D3D40B1A2BEF8FEE00F88FC8 /* viewModel */,
+				D3D40B192BEF8FE200F88FC8 /* view */,
+			);
+			path = teamDetails;
+			sourceTree = "<group>";
+		};
+		D3D40B0C2BEF8E4300F88FC8 /* lengueList */ = {
+			isa = PBXGroup;
+			children = (
+				D3D40B122BEF8F1900F88FC8 /* model */,
+				D3D40B112BEF8F0B00F88FC8 /* viewModel */,
+				D3D40B102BEF8EFF00F88FC8 /* view */,
+			);
+			path = lengueList;
+			sourceTree = "<group>";
+		};
+		D3D40B0D2BEF8E7C00F88FC8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				D3D40B152BEF8F6700F88FC8 /* LenguesTableViewCell.swift */,
+				D3D40B162BEF8F6700F88FC8 /* LenguesTableViewCell.xib */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		D3D40B102BEF8EFF00F88FC8 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D3D40B132BEF8F2B00F88FC8 /* LenguesTableViewController.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		D3D40B112BEF8F0B00F88FC8 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		D3D40B122BEF8F1900F88FC8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		D3D40B192BEF8FE200F88FC8 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D3D40B1C2BEF902A00F88FC8 /* TeamDetailsViewController.swift */,
+				D3D40B1E2BEF90A800F88FC8 /* PlayerCollectionViewCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		D3D40B1A2BEF8FEE00F88FC8 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		D3D40B1B2BEF8FF700F88FC8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		D3D40B202BEF918200F88FC8 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				D3D40B232BEF91B300F88FC8 /* FavoriteTableViewController.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		D3D40B212BEF918800F88FC8 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		D3D40B222BEF919100F88FC8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +381,7 @@
 				387C31722BEE441600DEA413 /* Assets.xcassets in Resources */,
 				387C31752BEE441600DEA413 /* Base in Resources */,
 				387C31702BEE441300DEA413 /* Base in Resources */,
+				D3D40B182BEF8F6700F88FC8 /* LenguesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,12 +406,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D40B142BEF8F2B00F88FC8 /* LenguesTableViewController.swift in Sources */,
 				387C316D2BEE441300DEA413 /* ViewController.swift in Sources */,
 				387C319F2BEE709500DEA413 /* FlowLayout.swift in Sources */,
+				D3D40B172BEF8F6700F88FC8 /* LenguesTableViewCell.swift in Sources */,
 				387C319B2BEE5FDE00DEA413 /* HomeCollectionViewController.swift in Sources */,
+				D3D40B242BEF91B300F88FC8 /* FavoriteTableViewController.swift in Sources */,
 				387C31692BEE441300DEA413 /* AppDelegate.swift in Sources */,
 				387C319D2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift in Sources */,
+				D3D40B1D2BEF902A00F88FC8 /* TeamDetailsViewController.swift in Sources */,
 				387C316B2BEE441300DEA413 /* SceneDelegate.swift in Sources */,
+				D3D40B1F2BEF90A800F88FC8 /* PlayerCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
