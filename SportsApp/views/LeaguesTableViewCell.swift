@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LenguesTableViewCell: UITableViewCell {
+class LeaguesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lengueName: UILabel!
     
