@@ -16,6 +16,9 @@
 		387C31802BEE441600DEA413 /* SportsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C317F2BEE441600DEA413 /* SportsAppTests.swift */; };
 		387C318A2BEE441600DEA413 /* SportsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C31892BEE441600DEA413 /* SportsAppUITests.swift */; };
 		387C318C2BEE441600DEA413 /* SportsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C318B2BEE441600DEA413 /* SportsAppUITestsLaunchTests.swift */; };
+		387C319B2BEE5FDE00DEA413 /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C319A2BEE5FDE00DEA413 /* HomeCollectionViewController.swift */; };
+		387C319D2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C319C2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift */; };
+		387C319F2BEE709500DEA413 /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C319E2BEE709500DEA413 /* FlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		387C31852BEE441600DEA413 /* SportsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		387C31892BEE441600DEA413 /* SportsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITests.swift; sourceTree = "<group>"; };
 		387C318B2BEE441600DEA413 /* SportsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		387C319A2BEE5FDE00DEA413 /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
+		387C319C2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCustomCell.swift; sourceTree = "<group>"; };
+		387C319E2BEE709500DEA413 /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		387C31672BEE441300DEA413 /* SportsApp */ = {
 			isa = PBXGroup;
 			children = (
+				387C31B22BEF641D00DEA413 /* modules */,
 				387C31682BEE441300DEA413 /* AppDelegate.swift */,
 				387C316A2BEE441300DEA413 /* SceneDelegate.swift */,
 				387C316C2BEE441300DEA413 /* ViewController.swift */,
@@ -125,6 +132,24 @@
 				387C318B2BEE441600DEA413 /* SportsAppUITestsLaunchTests.swift */,
 			);
 			path = SportsAppUITests;
+			sourceTree = "<group>";
+		};
+		387C31B22BEF641D00DEA413 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				387C31B32BEF642800DEA413 /* home */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		387C31B32BEF642800DEA413 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				387C319C2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift */,
+				387C319A2BEE5FDE00DEA413 /* HomeCollectionViewController.swift */,
+				387C319E2BEE709500DEA413 /* FlowLayout.swift */,
+			);
+			path = home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +284,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				387C316D2BEE441300DEA413 /* ViewController.swift in Sources */,
+				387C319F2BEE709500DEA413 /* FlowLayout.swift in Sources */,
+				387C319B2BEE5FDE00DEA413 /* HomeCollectionViewController.swift in Sources */,
 				387C31692BEE441300DEA413 /* AppDelegate.swift in Sources */,
+				387C319D2BEE607A00DEA413 /* SportCollectionViewCustomCell.swift in Sources */,
 				387C316B2BEE441300DEA413 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
