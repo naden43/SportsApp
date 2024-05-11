@@ -59,7 +59,7 @@ class LeaguesTableViewController: UITableViewController {
         let url = URL(string: league?.league_logo ?? league?.country_logo ?? "")
         
         
-        cell.lengueImage.kf.setImage(with: url)
+        cell.lengueImage.kf.setImage(with: url , placeholder: UIImage(named: "football-player"))
         cell.lengueName.text = league?.league_name ?? ""
 
         cell.layer.cornerRadius = 100
