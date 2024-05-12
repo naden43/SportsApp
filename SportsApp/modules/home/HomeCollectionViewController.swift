@@ -46,7 +46,7 @@ class HomeCollectionViewController: UICollectionViewController {
         return sports.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+   /* override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sportCollectionViewCell", for: indexPath) as! SportCollectionViewCustomCell
         
      
@@ -56,6 +56,7 @@ class HomeCollectionViewController: UICollectionViewController {
         
         return cell
     }
+    */
 
 
 
