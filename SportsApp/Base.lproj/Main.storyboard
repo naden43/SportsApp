@@ -118,6 +118,9 @@
                                 <rect key="frame" x="340" y="62" width="35" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title=""/>
+                                <connections>
+                                    <action selector="btnFav:" destination="Vcl-6h-cVF" eventType="touchUpInside" id="eWw-0U-6cc"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hZp-0K-UAh">
                                 <rect key="frame" x="0.0" y="111" width="390" height="699"/>
@@ -129,7 +132,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="upcomingEventCell" id="LHA-ls-8bl">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="upcomingEventCell" id="LHA-ls-8bl" customClass="UpcomingEventsCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
                                         <rect key="frame" x="39" y="0.0" width="312" height="216"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IJk-Lh-0Fw">
@@ -142,7 +145,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-mj-73X">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="HDm-mj-73X">
                                                     <rect key="frame" x="33" y="49" width="72" height="87"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="72" id="Nqh-HX-MHg"/>
@@ -191,7 +194,6 @@
                                                 <constraint firstItem="znU-P8-6Zu" firstAttribute="top" secondItem="Juk-Vj-eUP" secondAttribute="bottom" constant="9" id="5Yw-z0-Dvh"/>
                                                 <constraint firstItem="fkb-IY-5TK" firstAttribute="top" secondItem="sLT-mT-8b0" secondAttribute="bottom" constant="29" id="9IM-bC-eej"/>
                                                 <constraint firstItem="xZj-NC-Mpa" firstAttribute="top" secondItem="fkb-IY-5TK" secondAttribute="bottom" constant="27" id="Ba9-R0-nmt"/>
-                                                <constraint firstItem="xZj-NC-Mpa" firstAttribute="firstBaseline" secondItem="Fwf-Pg-cm2" secondAttribute="firstBaseline" id="DX3-Ny-cah"/>
                                                 <constraint firstItem="sLT-mT-8b0" firstAttribute="leading" secondItem="IJk-Lh-0Fw" secondAttribute="leading" constant="46.666666666666671" id="Eif-WV-4Ro"/>
                                                 <constraint firstItem="Fwf-Pg-cm2" firstAttribute="top" secondItem="HDm-mj-73X" secondAttribute="bottom" constant="27" id="Hop-ft-mba"/>
                                                 <constraint firstItem="6cJ-J9-XiP" firstAttribute="top" secondItem="IJk-Lh-0Fw" secondAttribute="top" constant="10" id="I9S-Wm-qQE"/>
@@ -214,9 +216,19 @@
                                                 <constraint firstAttribute="trailing" secondItem="fkb-IY-5TK" secondAttribute="trailing" constant="27" id="wZW-6g-bhw"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         <size key="customSize" width="312" height="216"/>
+                                        <connections>
+                                            <outlet property="eventDate" destination="znU-P8-6Zu" id="jgT-w8-TcK"/>
+                                            <outlet property="eventName" destination="6cJ-J9-XiP" id="N3h-Zh-bge"/>
+                                            <outlet property="eventTime" destination="znU-P8-6Zu" id="vnE-Pa-3tp"/>
+                                            <outlet property="firstTeamImageView" destination="HDm-mj-73X" id="QzB-5s-LqP"/>
+                                            <outlet property="firstTeamName" destination="Fwf-Pg-cm2" id="yqE-He-Der"/>
+                                            <outlet property="secondTeamImageView" destination="fkb-IY-5TK" id="bA1-ew-8xX"/>
+                                            <outlet property="secondTeamName" destination="IJk-Lh-0Fw" id="brN-aa-vPJ"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="latestResultsCell" id="Ikc-rg-1US">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="latestResultsCell" id="Ikc-rg-1US" customClass="LatestResultsCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
                                         <rect key="frame" x="39" y="226" width="312" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xs6-8R-vDA">
@@ -229,14 +241,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z3R-Cj-qQ2">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="z3R-Cj-qQ2">
                                                     <rect key="frame" x="178" y="26" width="41" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="41" id="Hwk-tu-zfV"/>
                                                         <constraint firstAttribute="height" constant="35" id="pjp-Ec-JnW"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hY3-ec-Vdf">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="hY3-ec-Vdf">
                                                     <rect key="frame" x="69.666666666666671" y="26" width="41" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="41" id="PiB-pD-RIv"/>
@@ -248,13 +260,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtp-no-82L">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtp-no-82L">
                                                     <rect key="frame" x="128.66666666666666" y="32" width="31.333333333333343" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" systemColor="systemBrownColor"/>
                                             <constraints>
                                                 <constraint firstItem="hY3-ec-Vdf" firstAttribute="top" secondItem="xs6-8R-vDA" secondAttribute="top" constant="26" id="273-As-LHp"/>
                                                 <constraint firstItem="Gtp-no-82L" firstAttribute="leading" secondItem="hY3-ec-Vdf" secondAttribute="trailing" constant="18" id="2ee-qm-8Es"/>
@@ -277,15 +290,22 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="312" height="86"/>
+                                        <connections>
+                                            <outlet property="firstTeamName" destination="Gch-m6-VlG" id="owA-O6-044"/>
+                                            <outlet property="firstTeamPadge" destination="hY3-ec-Vdf" id="a2K-6r-QK9"/>
+                                            <outlet property="scoreLabel" destination="Gtp-no-82L" id="V0u-V6-cDB"/>
+                                            <outlet property="secondTeamName" destination="lGV-Ho-3tD" id="GnZ-X7-KYw"/>
+                                            <outlet property="secondTeamPadge" destination="z3R-Cj-qQ2" id="cd0-E5-RUd"/>
+                                        </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCell" id="0VJ-ZX-wFZ">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCell" id="0VJ-ZX-wFZ" customClass="LeagueTeamCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
                                         <rect key="frame" x="118.66666666666667" y="322" width="153" height="122"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Whf-lj-7ZR">
                                             <rect key="frame" x="0.0" y="0.0" width="153" height="122"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ixc-nt-spZ">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Tennis_image" translatesAutoresizingMaskIntoConstraints="NO" id="Ixc-nt-spZ">
                                                     <rect key="frame" x="13" y="8" width="127" height="75"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zamalek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSK-p4-HqC">
@@ -305,7 +325,12 @@
                                                 <constraint firstItem="HSK-p4-HqC" firstAttribute="width" secondItem="Whf-lj-7ZR" secondAttribute="width" id="xb5-QP-NZK"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemTealColor"/>
                                         <size key="customSize" width="153" height="122"/>
+                                        <connections>
+                                            <outlet property="teamImageView" destination="Ixc-nt-spZ" id="WNu-4Y-a0p"/>
+                                            <outlet property="teamName" destination="HSK-p4-HqC" id="2ph-SF-xVg"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -323,7 +348,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnFav" destination="U9U-dT-GeR" id="wTh-Ff-FR9"/>
+                        <outlet property="leaguesDetailsCollectionView" destination="hZp-0K-UAh" id="sKC-lu-qD9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNl-cy-me2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -618,6 +643,7 @@
     </scenes>
     <resources>
         <image name="Tennis.png" width="512" height="423"/>
+        <image name="Tennis_image" width="512" height="423"/>
         <image name="football-player" width="512" height="512"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="logo" width="1920" height="1920"/>
@@ -635,8 +661,17 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
