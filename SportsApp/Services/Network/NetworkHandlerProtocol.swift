@@ -12,5 +12,6 @@ protocol NetworkHandlerProtocol {
     
     
     func loadData<T: Decodable>(onCompletion: @escaping (T) -> Void , url: String)
+
     
 }
