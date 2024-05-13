@@ -11,6 +11,8 @@ import Kingfisher
 
 class LeaguesTableViewController: UITableViewController {
     
+    var homeViewModel : HomeViewModel?
+    
     
     var leaguesViewModel : LeaguesViewModelProtocol?
     override func viewDidLoad() {
@@ -21,7 +23,8 @@ class LeaguesTableViewController: UITableViewController {
         tableView.register(nibCell, forCellReuseIdentifier: "LengueCell")
         
         
-        leaguesViewModel = LeaguesViewModel(network: NetworkHandler.instance, selectedSport: "basketball")
+        leaguesViewModel = LeaguesViewModel(network: NetworkHandler.instance, selectedSport: homeViewModel?.getSelectedSport() ?? "football")
+        
         
         leaguesViewModel?.implementBindLenguesToList {
             

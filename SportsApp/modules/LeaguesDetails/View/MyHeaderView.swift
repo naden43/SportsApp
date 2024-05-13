@@ -1,3 +1,5 @@
+
+
 //
 //  MyHeaderView.swift
 //  SportsApp
@@ -42,4 +44,5 @@ class MyHeaderView: UICollectionReusableView {
         titleLabel.text = title
     }
 }
+
 

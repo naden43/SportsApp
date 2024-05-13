@@ -5,7 +5,7 @@ import Alamofire
 class NetworkHandler : NetworkHandlerProtocol {
    
    private let baseUrl = "https://apiv2.allsportsapi.com/"
-   private let apiKey = "&APIkey=60ac2c656dd3ef121cfc7abfef05b8289ad04d9950682c14b119339eeadabe5d"
+   private let apiKey = "&APIkey=abc02ea64120a2a2b030bed665f226a1d66f109fa9f94eae9a6c66c8ca00d785"
    
    static let instance = NetworkHandler()
    

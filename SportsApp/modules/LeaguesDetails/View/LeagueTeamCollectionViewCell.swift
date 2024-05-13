@@ -13,4 +13,8 @@ class LeagueTeamCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var teamName: UILabel!
+    
+    
+    
 }
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vcl-6h-cVF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OjW-4u-G0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
@@ -221,11 +221,11 @@
                                         <connections>
                                             <outlet property="eventDate" destination="znU-P8-6Zu" id="jgT-w8-TcK"/>
                                             <outlet property="eventName" destination="6cJ-J9-XiP" id="N3h-Zh-bge"/>
-                                            <outlet property="eventTime" destination="znU-P8-6Zu" id="vnE-Pa-3tp"/>
+                                            <outlet property="eventTime" destination="Juk-Vj-eUP" id="MwS-lC-C8c"/>
                                             <outlet property="firstTeamImageView" destination="HDm-mj-73X" id="QzB-5s-LqP"/>
                                             <outlet property="firstTeamName" destination="Fwf-Pg-cm2" id="yqE-He-Der"/>
                                             <outlet property="secondTeamImageView" destination="fkb-IY-5TK" id="bA1-ew-8xX"/>
-                                            <outlet property="secondTeamName" destination="IJk-Lh-0Fw" id="brN-aa-vPJ"/>
+                                            <outlet property="secondTeamName" destination="xZj-NC-Mpa" id="Haw-T3-tSI"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="latestResultsCell" id="Ikc-rg-1US" customClass="LatestResultsCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
@@ -616,7 +616,7 @@
         <!--Leagues Table View Controller-->
         <scene sceneID="3g0-fh-1Bm">
             <objects>
-                <tableViewController id="PTZ-u3-0p1" customClass="LeaguesTableViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="leaguesListScreen" id="PTZ-u3-0p1" customClass="LeaguesTableViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="FKO-Qs-GYh">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

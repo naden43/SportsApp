@@ -45,6 +45,8 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
         
             
         }, url: endPointUrl ?? "football/?met=Leagues")
+        
+        
     }
     
     func getLeaguesCount() -> Int {
