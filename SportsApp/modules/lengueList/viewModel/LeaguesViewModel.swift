@@ -20,6 +20,8 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
 
     var leaguesList : [LeagueData]?
     
+    var leagueID : Int?
+    
     init(network: NetworkHandler , selectedSport:String) {
         self.network = network
         self.selectedSport = selectedSport
@@ -57,5 +59,25 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
     func getLeagueAtIndex(index:Int) -> LeagueData?{
         
         return leaguesList?[index]
+    }
+    
+    func setLeagueId(index : Int){
+        
+        leagueID = leaguesList?[index].league_key
+    }
+    
+    func getLeagueKey() -> String {
+        
+        return String(leagueID ?? 4)
+    }
+    
+    func setSelectedSport(sport:String){
+        
+        selectedSport = sport
+    }
+    
+    func getSelctedSport() -> String {
+        
+        return selectedSport
     }
 }

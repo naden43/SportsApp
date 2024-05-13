@@ -23,7 +23,10 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
         self.network = network
         getEndPointOfUpcomingEvents(selectedSport: mySelectedSport, leagueId: myleagueId)
         print("upcomingEventsEndPoint \(upcomingEventsEndPoint)")
-        getEndPointOfLatestResults(selectedSport: mySelectedSport, leagueId: myleagueId)
+        getEndPointOfLatestResults(selectedSport: mySelectedSport, leagueId:myleagueId)
+        
+        print("latest \(latestResultsEndPoint)")
+
     }
 
     func getEndPointOfUpcomingEvents(selectedSport: String, leagueId: String) {

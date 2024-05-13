@@ -109,7 +109,7 @@
         <!--Leagues Details View Controller-->
         <scene sceneID="Kno-8m-Vpf">
             <objects>
-                <viewController id="Vcl-6h-cVF" customClass="LeaguesDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="league_details_screen" modalPresentationStyle="fullScreen" id="Vcl-6h-cVF" customClass="LeaguesDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Blt-yf-3ZP">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

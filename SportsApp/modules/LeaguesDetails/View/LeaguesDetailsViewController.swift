@@ -10,6 +10,7 @@ import UIKit
 class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     var leagueDetailsViewModel : LeaguesDetailsViewModelProtocol?
     
+    var leagueListViewModel : LeaguesViewModel?
     
     
     @IBOutlet weak var leaguesDetailsCollectionView: UICollectionView!
@@ -24,7 +25,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         leaguesDetailsCollectionView.register(MyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyHeaderView.reuseIdentifier)
         
         
-        leagueDetailsViewModel = LeaguesDetailsViewModel(network: NetworkHandler.instance, mySelectedSport: "football",myleagueId: "205")
+        leagueDetailsViewModel = LeaguesDetailsViewModel(network: NetworkHandler.instance, mySelectedSport: (leagueListViewModel?.getSelctedSport())! ,myleagueId:(leagueListViewModel?.getLeagueKey())!)
         
         leagueDetailsViewModel?.implementBindLeagueDetailsToList(bindLeagueDetailsToList: ) {
         
@@ -86,7 +87,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         case 0:
             return (leagueDetailsViewModel?.getUpcomingEventsCount())!
         case 1:
-            return (leagueDetailsViewModel?.getUpcomingEventsCount())!
+            return (leagueDetailsViewModel?.getLatestResultsCount())!
             
         case 2:
             return 5
@@ -119,6 +120,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
             
             return cell
         case 1:
+            print("enter")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestResultsCell", for: indexPath) as! LatestResultsCollectionViewCell
             
             let latestResult = leagueDetailsViewModel?.getLatestResultsAtIndex(index: indexPath.row)

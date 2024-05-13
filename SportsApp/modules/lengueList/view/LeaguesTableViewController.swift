@@ -14,7 +14,7 @@ class LeaguesTableViewController: UITableViewController {
     var homeViewModel : HomeViewModel?
     
     
-    var leaguesViewModel : LeaguesViewModelProtocol?
+    var leaguesViewModel : LeaguesViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,5 +80,17 @@ class LeaguesTableViewController: UITableViewController {
     }
     
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        leaguesViewModel?.setLeagueId(index: indexPath.row)
+        
+        let leagueDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "league_details_screen") as! LeaguesDetailsViewController
+        
+    
+        leagueDetailsScreen.leagueListViewModel = leaguesViewModel
+        
+        self.present(leagueDetailsScreen, animated: true)
+        
+    }
 }
  
