@@ -82,7 +82,7 @@ class LeaguesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        leaguesViewModel?.setLeagueId(index: indexPath.row)
+        leaguesViewModel?.setSelectedLeague(index: indexPath.row)
         
         let leagueDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "league_details_screen") as! LeaguesDetailsViewController
         

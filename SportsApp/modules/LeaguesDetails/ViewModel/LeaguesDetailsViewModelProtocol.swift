@@ -18,6 +18,7 @@ protocol LeaguesDetailsViewModelProtocol {
     func loadUpcomingEvents()
     func getLatestResultsAtIndex(index:Int) -> EventData?
     func loadLatestResults()
+    func addLeagueToFav()
     
     
 }

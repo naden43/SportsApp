@@ -14,4 +14,5 @@ class LeagueData : Codable{
     var league_logo : String?
     var country_logo : String?
     var league_key : Int?
+    var sport_name : String?
 }

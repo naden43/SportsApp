@@ -19,6 +19,8 @@
 		380F9F812BF13CAB00F0713E /* LeaguesDetailsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380F9F802BF13CAB00F0713E /* LeaguesDetailsViewModelProtocol.swift */; };
 		38683E102BF185DC0098036B /* SportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38683E0F2BF185DC0098036B /* SportData.swift */; };
 		38683E122BF1862E0098036B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38683E112BF1862E0098036B /* HomeViewModel.swift */; };
+		38683E5D2BF2913A0098036B /* SportsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 38683E5B2BF2913A0098036B /* SportsApp.xcdatamodeld */; };
+		38683E622BF296E10098036B /* FavouriteSportsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38683E612BF296E10098036B /* FavouriteSportsDataSource.swift */; };
 		387C31692BEE441300DEA413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C31682BEE441300DEA413 /* AppDelegate.swift */; };
 		387C316B2BEE441300DEA413 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C316A2BEE441300DEA413 /* SceneDelegate.swift */; };
 		387C316D2BEE441300DEA413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387C316C2BEE441300DEA413 /* ViewController.swift */; };
@@ -76,6 +78,8 @@
 		380F9F802BF13CAB00F0713E /* LeaguesDetailsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaguesDetailsViewModelProtocol.swift; sourceTree = "<group>"; };
 		38683E0F2BF185DC0098036B /* SportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportData.swift; sourceTree = "<group>"; };
 		38683E112BF1862E0098036B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		38683E5C2BF2913A0098036B /* SportsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportsApp.xcdatamodel; sourceTree = "<group>"; };
+		38683E612BF296E10098036B /* FavouriteSportsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteSportsDataSource.swift; sourceTree = "<group>"; };
 		387C31652BEE441300DEA413 /* SportsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		387C31682BEE441300DEA413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		387C316A2BEE441300DEA413 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +203,32 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		38683E5E2BF296080098036B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				38683E602BF296660098036B /* Model */,
+				38683E5F2BF296130098036B /* db */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		38683E5F2BF296130098036B /* db */ = {
+			isa = PBXGroup;
+			children = (
+				38683E612BF296E10098036B /* FavouriteSportsDataSource.swift */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		38683E602BF296660098036B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D3A5EE5C2BF112A9006741B6 /* League.swift */,
+				D3A5EE5A2BF1126A006741B6 /* LeagueData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		387C315C2BEE441300DEA413 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +252,7 @@
 		387C31672BEE441300DEA413 /* SportsApp */ = {
 			isa = PBXGroup;
 			children = (
+				38683E5E2BF296080098036B /* Models */,
 				D3BD9EB32BF015820059DCDA /* Services */,
 				D3D40B0D2BEF8E7C00F88FC8 /* views */,
 				387C31B22BEF641D00DEA413 /* modules */,
@@ -232,6 +263,7 @@
 				387C31712BEE441600DEA413 /* Assets.xcassets */,
 				387C31732BEE441600DEA413 /* LaunchScreen.storyboard */,
 				387C31762BEE441600DEA413 /* Info.plist */,
+				38683E5B2BF2913A0098036B /* SportsApp.xcdatamodeld */,
 			);
 			path = SportsApp;
 			sourceTree = "<group>";
@@ -351,8 +383,6 @@
 		D3D40B122BEF8F1900F88FC8 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				D3A5EE5C2BF112A9006741B6 /* League.swift */,
-				D3A5EE5A2BF1126A006741B6 /* LeagueData.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -549,6 +579,7 @@
 				387C316D2BEE441300DEA413 /* ViewController.swift in Sources */,
 				38683E102BF185DC0098036B /* SportData.swift in Sources */,
 				380F9F7B2BF134D000F0713E /* EventData.swift in Sources */,
+				38683E5D2BF2913A0098036B /* SportsApp.xcdatamodeld in Sources */,
 				D3A5EE592BF1123C006741B6 /* LeaguesViewModel.swift in Sources */,
 				387C319F2BEE709500DEA413 /* FlowLayout.swift in Sources */,
 				D3A5EE5F2BF11366006741B6 /* NetworkHandler.swift in Sources */,
@@ -566,6 +597,7 @@
 				387C316B2BEE441300DEA413 /* SceneDelegate.swift in Sources */,
 				380F9F712BF11AEC00F0713E /* LeaguesDetailsViewController.swift in Sources */,
 				D3D40B1F2BEF90A800F88FC8 /* PlayerCollectionViewCell.swift in Sources */,
+				38683E622BF296E10098036B /* FavouriteSportsDataSource.swift in Sources */,
 				380F9ED72BF012BB00F0713E /* UpcomingEventsCollectionViewCell.swift in Sources */,
 				380F9F812BF13CAB00F0713E /* LeaguesDetailsViewModelProtocol.swift in Sources */,
 				D3A5EE5D2BF112A9006741B6 /* League.swift in Sources */,
@@ -953,6 +985,20 @@
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		38683E5B2BF2913A0098036B /* SportsApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				38683E5C2BF2913A0098036B /* SportsApp.xcdatamodel */,
+			);
+			currentVersion = 38683E5C2BF2913A0098036B /* SportsApp.xcdatamodel */;
+			name = SportsApp.xcdatamodeld;
+			path = /Users/salma/Documents/SportsApp/SportsApp/SportsApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 387C315D2BEE441300DEA413 /* Project object */;
 }

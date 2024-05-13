@@ -25,7 +25,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         leaguesDetailsCollectionView.register(MyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyHeaderView.reuseIdentifier)
         
         
-        leagueDetailsViewModel = LeaguesDetailsViewModel(network: NetworkHandler.instance, mySelectedSport: (leagueListViewModel?.getSelctedSport())! ,myleagueId:(leagueListViewModel?.getLeagueKey())!)
+        leagueDetailsViewModel = LeaguesDetailsViewModel(network: NetworkHandler.instance, selectedLeague: (leagueListViewModel?.getSelectedLeague())!, favLeagueDataSource: FavouriteSportsDataSource.shared)
         
         leagueDetailsViewModel?.implementBindLeagueDetailsToList(bindLeagueDetailsToList: ) {
         
@@ -61,6 +61,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MyHeaderView.reuseIdentifier, for: indexPath) as! MyHeaderView
         
+        
         switch indexPath.section {
         case 0:
             headerView.setTitle("Upcoming Events:")
@@ -74,6 +75,8 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         
         return headerView
     }
+    
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
@@ -148,6 +151,8 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     
     
     @IBAction func btnFav(_ sender: Any) {
+        
+        leagueDetailsViewModel?.addLeagueToFav()
     }
     
     

@@ -17,6 +17,7 @@ class EventData: NSObject, Codable {
     var away_team_logo: String?
     var event_home_team: String?
     var event_away_team: String?
+    
 }
 
 /*

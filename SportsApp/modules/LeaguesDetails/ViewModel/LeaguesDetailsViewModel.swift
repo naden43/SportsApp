@@ -11,6 +11,7 @@ import Foundation
 class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     
     let network: NetworkHandlerProtocol
+    var  favLeagueDataSource : FavouriteSportsDataSource
     var bindLeagueDetailsToList: () -> Void = {}
     var upcomingEventsEndPoint: String?
     var latestResultsEndPoint: String?
@@ -18,12 +19,17 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     var latestResultsList: [EventData]?
     var startDate: String?
     var stopDate: String?
+    var selectedLeague : LeagueData?
+    
+    
   
-    init(network: NetworkHandler, mySelectedSport: String, myleagueId: String) {
+    init(network: NetworkHandler, selectedLeague : LeagueData, favLeagueDataSource : FavouriteSportsDataSource) {
         self.network = network
-        getEndPointOfUpcomingEvents(selectedSport: mySelectedSport, leagueId: myleagueId)
+        self.favLeagueDataSource = favLeagueDataSource
+        self.selectedLeague = selectedLeague
+        getEndPointOfUpcomingEvents(selectedSport: selectedLeague.sport_name!, leagueId: String(selectedLeague.league_key!))
         print("upcomingEventsEndPoint \(upcomingEventsEndPoint)")
-        getEndPointOfLatestResults(selectedSport: mySelectedSport, leagueId:myleagueId)
+        getEndPointOfLatestResults(selectedSport: selectedLeague.sport_name!, leagueId: String(selectedLeague.league_key!))
         
         print("latest \(latestResultsEndPoint)")
 
@@ -104,5 +110,11 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
         let startDateString = dateFormatter.string(from: startDate)
         let stopDateString = dateFormatter.string(from: currentDate)
         return (startDateString, stopDateString)
+    }
+    
+    func addLeagueToFav(){
+        
+        favLeagueDataSource.addFavLeague(league: selectedLeague!)
+        
     }
 }

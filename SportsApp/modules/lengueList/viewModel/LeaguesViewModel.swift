@@ -16,6 +16,8 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
     
     var selectedSport : String
     
+    var selectedLeague : Int?
+    
     let endPointUrl : String?
 
     var leaguesList : [LeagueData]?
@@ -60,17 +62,7 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
         
         return leaguesList?[index]
     }
-    
-    func setLeagueId(index : Int){
         
-        leagueID = leaguesList?[index].league_key
-    }
-    
-    func getLeagueKey() -> String {
-        
-        return String(leagueID ?? 4)
-    }
-    
     func setSelectedSport(sport:String){
         
         selectedSport = sport
@@ -79,5 +71,14 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
     func getSelctedSport() -> String {
         
         return selectedSport
+    }
+    
+    func setSelectedLeague(index:Int){
+        selectedLeague = index
+    }
+    func getSelectedLeague()-> LeagueData{
+        
+      leaguesList?[selectedLeague!].sport_name = selectedSport
+        return (leaguesList?[selectedLeague!])!
     }
 }
