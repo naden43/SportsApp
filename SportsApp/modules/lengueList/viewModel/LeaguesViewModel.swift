@@ -28,6 +28,7 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
         self.network = network
         self.selectedSport = selectedSport
         endPointUrl = "\(selectedSport)/?met=Leagues"
+        print("all endPoint url \(endPointUrl)")
     }
 
     
@@ -37,21 +38,27 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
 
     func loadLeagues() {
         
-        network.loadData(onCompletion: { [weak self] (lenguesList:League) in
-            
-            self?.leaguesList = lenguesList.result
-            
-            //DispatchQueue.main.sync {
+            network.loadData(url: endPointUrl ?? "football/?met=Leagues") { [weak self] (leagues:League? , error)in
                 
+                guard let leagues = leagues else {
+                    
+                    guard let error = error else {return}
+                    
+                    print(error.localizedDescription)
+                    
+                    return
+                    
+                }
+                
+                self?.leaguesList = leagues.result
+                               
                 self?.bindLenguesToList()
                 
-            //}
-        
+                
+            }
             
-        }, url: endPointUrl ?? "football/?met=Leagues")
-        
-        
-    }
+            
+        }
     
     func getLeaguesCount() -> Int {
         

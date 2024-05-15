@@ -17,9 +17,11 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     var latestResultsEndPoint: String?
     var upcomingEventList: [EventData]?
     var latestResultsList: [EventData]?
+    var teamResultList : [TeamData]?
     var startDate: String?
     var stopDate: String?
     var selectedLeague : LeagueData?
+    var selectedTeam : TeamData?
     
     
   
@@ -60,6 +62,10 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     func getLatestResultsCount() -> Int {
         return latestResultsList?.count ?? 0
     }
+    
+    func getTeamsListCount() -> Int {
+        return teamResultList?.count ?? 0
+    }
 
     func getUpcomingEventAtIndex(index: Int) -> EventData? {
         return upcomingEventList?[index]
@@ -68,26 +74,61 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     func getLatestResultsAtIndex(index: Int) -> EventData? {
         return latestResultsList?[index]
     }
+    
+    func getTeamsOfLeagueAtIndex(index: Int) -> TeamData? {
+        return teamResultList?[index]
+    }
+    
+    func setSelectedTeam(index : Int){
+        selectedTeam = teamResultList![index]
+        
+    }
+    
+    func getSelectedTeam()->TeamData{
+        return selectedTeam!
+    }
 
+    
+    func getSelectedLeague()->LeagueData{
+        return selectedLeague!
+    }
+     
     func loadUpcomingEvents() {
-         network.loadData(onCompletion: { [weak self] (upcomingEventList:Event) in
-             
-             self?.upcomingEventList = upcomingEventList.result
-             
-             self?.bindLeagueDetailsToList()
-             
-         }, url: upcomingEventsEndPoint ?? "football?met=Fixtures&leagueId=205&from=2023-05-18&to=2024-05-18")
-     }
-     
-     
-     func loadLatestResults() {
-         network.loadData(onCompletion: { [weak self] (latestResultsList: Event) in
-             
-             self?.latestResultsList = latestResultsList.result
-             self?.bindLeagueDetailsToList()
-             
-         }, url : latestResultsEndPoint ??  "football?met=Fixtures&leagueId=205&from=2023-05-18&to=2024-05-18")
-     }
+        network.loadData(url: upcomingEventsEndPoint ?? "football?met=Fixtures&leagueId=205&from=2023-05-18&to=2024-05-18") {[weak self] (upcomingEventList:Event? , error) in
+            
+            
+            guard let upcomingEventList = upcomingEventList else {
+                
+                guard let error = error else{return}
+                print(error.localizedDescription)
+                return
+            }
+            self?.upcomingEventList = upcomingEventList.result
+            
+            self?.bindLeagueDetailsToList()
+        }
+    }
+            
+         
+         
+         
+   func loadLatestResults() {
+                      
+             network.loadData(url: latestResultsEndPoint ??  "football?met=Fixtures&leagueId=205&from=2023-05-18&to=2024-05-18") {[weak self] (latestResultsList: Event? , error) in
+                 
+                 guard let latestResultsList = latestResultsList else {
+                     
+                     guard let error = error else{return}
+                     print(error.localizedDescription)
+                     return
+                 }
+                 
+                    self?.latestResultsList = latestResultsList.result
+                    self?.getTeamInfo() // Call getTeamInfo after updating latestResultsList
+
+                    self?.bindLeagueDetailsToList()
+                }
+         }
 
     func calculateDatesForUpcomingEvents() -> (startDate: String, stopDate: String) {
         let currentDate = Date()
@@ -117,4 +158,25 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
         favLeagueDataSource.addFavLeague(league: selectedLeague!)
         
     }
+    
+    func getTeamInfo(){
+        if let latestResultsList = latestResultsList {
+            var teams = [TeamData]()
+            for eventData in latestResultsList {
+                let teamInfo = TeamData(home_team_logo: eventData.home_team_logo,
+                                        away_team_logo: eventData.away_team_logo,
+                                        event_home_team: eventData.event_home_team,
+                                        event_away_team: eventData.event_away_team,
+                                        away_team_key: eventData.away_team_key,
+                                        home_team_key: eventData.home_team_key)
+                
+                teams.append(teamInfo)
+            }
+            self.teamResultList = teams
+            print("team info: \(teamResultList)") // Verify teamResultList after updating
+        } else {
+            print("latestResultsList is nil")
+        }
+    }
+
 }

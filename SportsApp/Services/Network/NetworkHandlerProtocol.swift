@@ -6,12 +6,12 @@
 //
 
 import Foundation
-
-
+ 
+ 
 protocol NetworkHandlerProtocol {
     
     
-    func loadData<T: Decodable>(onCompletion: @escaping (T) -> Void , url: String)
-
+    func loadData<T: Decodable>(url : String  , onCompletion: @escaping (T?, Error?) -> Void)
+ 
     
 }

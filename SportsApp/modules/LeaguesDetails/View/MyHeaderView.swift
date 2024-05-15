@@ -16,7 +16,6 @@ class MyHeaderView: UICollectionReusableView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        // Customize label properties here
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
@@ -26,7 +25,6 @@ class MyHeaderView: UICollectionReusableView {
         super.init(frame: frame)
         
         addSubview(titleLabel)
-        // Add constraints for titleLabel here
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),

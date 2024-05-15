@@ -18,7 +18,6 @@ class LeaguesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let nibCell = UINib(nibName: "LeaguesTableViewCell", bundle: nil)
         tableView.register(nibCell, forCellReuseIdentifier: "LengueCell")
         
@@ -31,23 +30,17 @@ class LeaguesTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
         
-        
         leaguesViewModel?.loadLeagues()
-      
-        
-        
         
     }
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return leaguesViewModel?.getLeaguesCount() ?? 0
     }
     
@@ -73,8 +66,6 @@ class LeaguesTableViewController: UITableViewController {
         cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
         cell.contentView.layer.shadowRadius = 4
         cell.contentView.layer.masksToBounds = false
-        
-        
         
         return cell
     }

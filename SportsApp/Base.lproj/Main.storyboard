@@ -124,7 +124,7 @@
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hZp-0K-UAh">
                                 <rect key="frame" x="0.0" y="111" width="390" height="699"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AccentColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1uj-d7-wZ4">
                                     <size key="itemSize" width="312" height="216"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -182,12 +182,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arjantine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cJ-J9-XiP">
-                                                    <rect key="frame" x="77" y="10" width="158" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="77" y="10" width="158" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" name="SecondaryColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" name="Color 1"/>
                                             <constraints>
                                                 <constraint firstItem="fkb-IY-5TK" firstAttribute="leading" secondItem="Juk-Vj-eUP" secondAttribute="trailing" constant="33" id="405-bW-SDW"/>
                                                 <constraint firstItem="HDm-mj-73X" firstAttribute="top" secondItem="sLT-mT-8b0" secondAttribute="bottom" constant="29" id="554-kl-KNy"/>
@@ -216,7 +217,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="fkb-IY-5TK" secondAttribute="trailing" constant="27" id="wZW-6g-bhw"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <color key="backgroundColor" name="SecondaryColor"/>
                                         <size key="customSize" width="312" height="216"/>
                                         <connections>
                                             <outlet property="eventDate" destination="znU-P8-6Zu" id="jgT-w8-TcK"/>
@@ -242,10 +243,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="z3R-Cj-qQ2">
-                                                    <rect key="frame" x="178" y="26" width="41" height="35"/>
+                                                    <rect key="frame" x="178" y="26" width="50" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="41" id="Hwk-tu-zfV"/>
-                                                        <constraint firstAttribute="height" constant="35" id="pjp-Ec-JnW"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Hwk-tu-zfV"/>
+                                                        <constraint firstAttribute="height" constant="60" id="pjp-Ec-JnW"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="hY3-ec-Vdf">
@@ -255,7 +256,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zamalek" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGV-Ho-3tD">
-                                                    <rect key="frame" x="229" y="33" width="70" height="21"/>
+                                                    <rect key="frame" x="238" y="33" width="61" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -267,7 +268,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                            <color key="backgroundColor" name="SecondaryColor"/>
                                             <constraints>
                                                 <constraint firstItem="hY3-ec-Vdf" firstAttribute="top" secondItem="xs6-8R-vDA" secondAttribute="top" constant="26" id="273-As-LHp"/>
                                                 <constraint firstItem="Gtp-no-82L" firstAttribute="leading" secondItem="hY3-ec-Vdf" secondAttribute="trailing" constant="18" id="2ee-qm-8Es"/>
@@ -299,17 +300,17 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCell" id="0VJ-ZX-wFZ" customClass="LeagueTeamCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="118.66666666666667" y="322" width="153" height="122"/>
+                                        <rect key="frame" x="95" y="322" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Whf-lj-7ZR">
-                                            <rect key="frame" x="0.0" y="0.0" width="153" height="122"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Tennis_image" translatesAutoresizingMaskIntoConstraints="NO" id="Ixc-nt-spZ">
-                                                    <rect key="frame" x="13" y="8" width="127" height="75"/>
+                                                    <rect key="frame" x="13" y="8" width="174" height="153"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zamalek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSK-p4-HqC">
-                                                    <rect key="frame" x="0.0" y="91" width="153" height="21"/>
+                                                    <rect key="frame" x="0.0" y="169" width="200" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -322,11 +323,12 @@
                                                 <constraint firstItem="HSK-p4-HqC" firstAttribute="top" secondItem="Ixc-nt-spZ" secondAttribute="bottom" constant="8" id="Mr6-Gj-OWL"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ixc-nt-spZ" secondAttribute="trailing" constant="13" id="Oy8-E2-w5g"/>
                                                 <constraint firstItem="HSK-p4-HqC" firstAttribute="centerX" secondItem="Whf-lj-7ZR" secondAttribute="centerX" id="ejq-nE-AJU"/>
+                                                <constraint firstItem="Ixc-nt-spZ" firstAttribute="width" secondItem="Whf-lj-7ZR" secondAttribute="width" multiplier="0.87" id="uUV-8e-eUi"/>
                                                 <constraint firstItem="HSK-p4-HqC" firstAttribute="width" secondItem="Whf-lj-7ZR" secondAttribute="width" id="xb5-QP-NZK"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemTealColor"/>
-                                        <size key="customSize" width="153" height="122"/>
+                                        <color key="backgroundColor" name="SecondaryColor"/>
+                                        <size key="customSize" width="200" height="200"/>
                                         <connections>
                                             <outlet property="teamImageView" destination="Ixc-nt-spZ" id="WNu-4Y-a0p"/>
                                             <outlet property="teamName" destination="HSK-p4-HqC" id="2ph-SF-xVg"/>
@@ -336,7 +338,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ILI-o9-WdJ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
                             <constraint firstItem="ILI-o9-WdJ" firstAttribute="trailing" secondItem="hZp-0K-UAh" secondAttribute="trailing" id="1lK-1f-zAx"/>
                             <constraint firstItem="U9U-dT-GeR" firstAttribute="leading" secondItem="ILI-o9-WdJ" secondAttribute="leading" constant="340" id="45F-6k-M4j"/>
@@ -508,7 +510,7 @@
         <!--Team Details View Controller-->
         <scene sceneID="PBp-Sn-ppb">
             <objects>
-                <viewController id="saq-2Q-2ij" customClass="TeamDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="team_details" id="saq-2Q-2ij" customClass="TeamDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="50k-cc-Lbs">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -650,7 +652,13 @@
         <image name="player" width="150" height="150"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.74966758489999996" green="0.79104566570000001" blue="0.74213665719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Color 1">
+            <color red="0.0039215686274509803" green="0.27058823529411763" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryColor">
+            <color red="0.85882352941176465" green="0.87058823529411766" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -661,17 +669,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

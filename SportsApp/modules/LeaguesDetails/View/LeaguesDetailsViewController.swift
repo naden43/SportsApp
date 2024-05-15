@@ -21,7 +21,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         leaguesDetailsCollectionView.dataSource = self
         leaguesDetailsCollectionView.delegate = self
         
-        // Register header view
+       
         leaguesDetailsCollectionView.register(MyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyHeaderView.reuseIdentifier)
         
         
@@ -77,29 +77,26 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     }
     
     
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
-    
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section{
         case 0:
             return (leagueDetailsViewModel?.getUpcomingEventsCount())!
         case 1:
-            return (leagueDetailsViewModel?.getLatestResultsCount())!
+           // return (leagueDetailsViewModel?.getLatestResultsCount())!
+            return 1
             
         case 2:
-            return 5
+            return (leagueDetailsViewModel?.getTeamsListCount())!
         default:
             break
 
         }
         
-        return 5
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -142,11 +139,31 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
             
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamCell", for: indexPath) as! LeagueTeamCollectionViewCell
-            // Configure the cell for the third section (Team Detail)
+            
+            let teamInfo = leagueDetailsViewModel?.getTeamsOfLeagueAtIndex(index: indexPath.row)
+            
+            if let homeTeamLogoString = teamInfo?.home_team_logo, let homeTeamLogoURL = URL(string: homeTeamLogoString) {
+               cell.teamImageView.kf.setImage(with: homeTeamLogoURL)
+            }
+ 
+          cell.teamName.text = teamInfo?.event_home_team
+    
+            
             return cell
         default:
             fatalError("Unexpected section index")
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        leagueDetailsViewModel?.setSelectedTeam(index: indexPath.row)
+    
+        
+        let teamDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "team_details") as! TeamDetailsViewController
+    
+        teamDetailsScreen.leaguesDetailsViewModel = leagueDetailsViewModel
+        
+        self.present(teamDetailsScreen, animated: true)
     }
     
     
