@@ -16,7 +16,7 @@ class PlayerCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
             super.layoutSubviews()
             
-            personImage.layer.cornerRadius = personImage.frame.width / 2
+            personImage.layer.cornerRadius = personImage.bounds.width / 2
             personImage.clipsToBounds = true
         }
 }

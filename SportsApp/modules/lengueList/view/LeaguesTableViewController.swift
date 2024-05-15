@@ -24,9 +24,14 @@ class LeaguesTableViewController: UITableViewController {
         
         leaguesViewModel = LeaguesViewModel(network: NetworkHandler.instance, selectedSport: homeViewModel?.getSelectedSport() ?? "football")
         
+        let indecator = UIActivityIndicatorView(style: .large)
+        indecator.center = view.center
+        indecator.startAnimating()
+        view.addSubview(indecator)
         
         leaguesViewModel?.implementBindLenguesToList {
             
+            indecator.stopAnimating()
             self.tableView.reloadData()
         }
         
@@ -46,7 +51,7 @@ class LeaguesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return view.bounds.height/8
+        return view.bounds.height/9
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -60,12 +65,9 @@ class LeaguesTableViewController: UITableViewController {
         cell.lengueImage.kf.setImage(with: url)
         cell.lengueName.text = league?.league_name ?? ""
         
-        cell.layer.cornerRadius = 100
         cell.contentView.layer.shadowColor = UIColor.black.cgColor
         cell.contentView.layer.shadowOpacity = 0.5
         cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        cell.contentView.layer.shadowRadius = 4
-        cell.contentView.layer.masksToBounds = false
         
         return cell
     }
@@ -73,14 +75,29 @@ class LeaguesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        leaguesViewModel?.setSelectedLeague(index: indexPath.row)
+        if leaguesViewModel?.checkReachability() == true {
+            leaguesViewModel?.setSelectedLeague(index: indexPath.row)
+            
+            let leagueDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "league_details_screen") as! LeaguesDetailsViewController
+            
         
-        let leagueDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "league_details_screen") as! LeaguesDetailsViewController
+            leagueDetailsScreen.leagueListViewModel = leaguesViewModel
+            
+            self.present(leagueDetailsScreen, animated: true)
+        }
+        else{
+            
+            let alert = UIAlertController(title: nil, message: "Check your Internet Connection", preferredStyle: .actionSheet)
+                   self.present(alert, animated: true, completion: nil)
+            
+            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 1){
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                
+            }
+        }
         
-    
-        leagueDetailsScreen.leagueListViewModel = leaguesViewModel
-        
-        self.present(leagueDetailsScreen, animated: true)
         
     }
 }

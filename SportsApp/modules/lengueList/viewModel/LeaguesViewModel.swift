@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Reachability
 
-class LeaguesViewModel : LeaguesViewModelProtocol {
+class LeaguesViewModel : LeaguesViewModelProtocol  , SharedLeagueDataViewModelProtocol{
    
 
     let network : NetworkHandlerProtocol
@@ -23,6 +24,9 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
     var leaguesList : [LeagueData]?
     
     var leagueID : Int?
+    
+    let reachability = try! Reachability()
+
     
     init(network: NetworkHandler , selectedSport:String) {
         self.network = network
@@ -78,6 +82,18 @@ class LeaguesViewModel : LeaguesViewModelProtocol {
     func getSelctedSport() -> String {
         
         return selectedSport
+    }
+    
+    func checkReachability() -> Bool {
+        
+        switch reachability.connection {
+            
+            case .unavailable:
+                return false
+            case .wifi , .cellular:
+                return true
+    
+        }
     }
     
     func setSelectedLeague(index:Int){
