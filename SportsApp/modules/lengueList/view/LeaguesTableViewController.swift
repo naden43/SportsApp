@@ -59,10 +59,10 @@ class LeaguesTableViewController: UITableViewController {
         
         
         let league = leaguesViewModel?.getLeagueAtIndex(index: indexPath.row)
-        let url = URL(string: league?.league_logo ?? league?.country_logo ?? "")
+        let url = URL(string: league?.league_logo ?? "")
         
         
-        cell.lengueImage.kf.setImage(with: url)
+        cell.lengueImage.kf.setImage(with: url , placeholder: UIImage(named: "leaguePlaceHolder"))
         cell.lengueName.text = league?.league_name ?? ""
         
         cell.contentView.layer.shadowColor = UIColor.black.cgColor

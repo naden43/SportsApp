@@ -13,10 +13,10 @@ class HomeViewModel{
     
     // Dummy data array
     let sports: [Sport] = [
-        Sport(name: "football", imageName: "football"),
-        Sport(name: "basketball", imageName: "basketBall"),
-        Sport(name: "tennis", imageName: "tennis"),
-        Sport(name: "cricket", imageName: "cricket")
+        Sport(name: "football", imageName: "football_2"),
+        Sport(name: "basketball", imageName: "basketball_2"),
+        Sport(name: "tennis", imageName: "tennis_1"),
+        Sport(name: "cricket", imageName: "cricket-2")
     ]
     
     func getSportsCount()->Int{

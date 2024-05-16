@@ -15,7 +15,7 @@ protocol LeaguesDetailsViewModelProtocol {
     func getLatestResultsCount() -> Int
     func getTeamsListCount() -> Int
     func getSelectedLeague()->LeagueData
-
+    func getSectionCount() -> Int 
     func getUpcomingEventAtIndex(index:Int) -> EventData?
     func loadUpcomingEvents()
     func getLatestResultsAtIndex(index:Int) -> EventData?
@@ -23,6 +23,7 @@ protocol LeaguesDetailsViewModelProtocol {
     func setSelectedTeam(index : Int)
     func getSelectedTeam()->TeamData
     func loadLatestResults()
+    func checkFavState() -> Bool
     func addLeagueToFav()
     func getTeamInfo()
     

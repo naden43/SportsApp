@@ -10,32 +10,92 @@ import XCTest
 
 final class SportsAppTests: XCTestCase {
 
+    var networkHandler:NetworkHandler?
+    var mockNetwork: MockNetworkHandler?
     override func setUpWithError() throws {
+        
+        networkHandler = NetworkHandler.instance
+        
+        mockNetwork = MockNetworkHandler(shouldReturnError: false)
+        
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
+        
+        networkHandler = nil
+        mockNetwork = nil
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
 
     
-    func testFetchDataFromJson() {
-        let networkHandler = NetworkHandler.instance
-          
-          let expectation = XCTestExpectation(description: "Waiting for API response")
-
-          networkHandler.loadData(url: "https://apiv2.allsportsapi.com/football/?met=Leagues&APIkey=abc02ea64120a2a2b030bed665f226a1d66f109fa9f94eae9a6c66c8ca00d785") { (result: Event?, error: Error?) in
-              if let error = error {
-                        XCTFail("Error: \(error.localizedDescription)")
-                    } else {
-                      
-                        XCTAssertNotNil(result)
-                        XCTAssertNil(error)
-                    }
-                    expectation.fulfill()
-           
-          }
-      }
+    
+    func testFetchDataFromNetwork() {
+        
+        let myExpectation = expectation(description: "wait api result")
+        networkHandler?.loadData(url: "football/?met=Leagues", onCompletion: { (leagues : League?, error) in
+            
+            
+            if let error = error {
+                print(error)
+                myExpectation.fulfill()
+                XCTFail()
+            }
+            else {
+                
+                XCTAssertNotNil(leagues)
+                                
+                myExpectation.fulfill()
+            }
+            
+            
+        })
+        waitForExpectations(timeout: 10)
+    }
+    
+    
+    func testFetchDataFromNetwork_failCase() {
+        
+        let myExpectation = expectation(description: "wait api result")
+        networkHandler?.loadData(url: "football/?met=League", onCompletion: { (leagues : League?, error) in
+            
+            
+            if let error = error {
+                print(error)
+                myExpectation.fulfill()
+                XCTFail()
+            }
+            else {
+                
+                XCTAssertNotNil(leagues)
+                                
+                myExpectation.fulfill()
+            }
+            
+            
+        })
+        waitForExpectations(timeout: 10)
+    }
+    
+    func testMockClass() {
+        
+        mockNetwork?.loadData(onComplition: { (leagues:League? , error) in
+            
+            if let error = error {
+                
+                XCTAssertNil(leagues)
+                XCTFail()
+            }
+            
+            if let leagues = leagues {
+                XCTAssertEqual(leagues.result?.count, 1)
+            }
+            
+            
+        })
+    }
+    
+    
 }
 

@@ -10,6 +10,7 @@ import UIKit
 class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     var leagueDetailsViewModel : LeaguesDetailsViewModelProtocol?
     
+    @IBOutlet weak var favImage: UIButton!
     var leagueListViewModel : SharedLeagueDataViewModelProtocol?
     
     
@@ -25,11 +26,26 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         leaguesDetailsCollectionView.register(MyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyHeaderView.reuseIdentifier)
         
         
-        leagueDetailsViewModel = LeaguesDetailsViewModel(network: NetworkHandler.instance, selectedLeague: (leagueListViewModel?.getSelectedLeague())!, favLeagueDataSource: FavouriteSportsDataSource.shared)
+        leagueDetailsViewModel = LeaguesDetailsViewModel(network: NetworkHandler.instance, selectedLeague: (leagueListViewModel?.getSelectedLeague())!, favLeagueDataSource: FavouriteSportsDataSource.shared, favDataSource: FavouriteSportsDataSource.shared)
+        
+        
+        setFav()
+        
+        
         
         leagueDetailsViewModel?.implementBindLeagueDetailsToList(bindLeagueDetailsToList: ) {
         
-            self.leaguesDetailsCollectionView.reloadData()
+            print(self.leagueDetailsViewModel?.getSectionCount())
+            if self.leagueDetailsViewModel?.getSectionCount() == 0{
+                
+                self.emptyDataImage.image = UIImage(named: "empty-box")
+                
+            }
+            else{
+                self.emptyDataImage.image = nil
+
+                self.leaguesDetailsCollectionView.reloadData()
+            }
         }
 
         
@@ -53,6 +69,24 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         leaguesDetailsCollectionView.setCollectionViewLayout(layout, animated: true)
     }
     
+    func setFav() {
+        
+        let result = (leagueDetailsViewModel?.checkFavState())!
+        
+        if  result  == false {
+            
+            print("enter here ")
+            favImage.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        else {
+            print("enter here ")
+
+            favImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+
+        }
+        
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader else {
@@ -62,23 +96,26 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MyHeaderView.reuseIdentifier, for: indexPath) as! MyHeaderView
         
         
-        switch indexPath.section {
-        case 0:
-            headerView.setTitle("Upcoming Events:")
-        case 1:
-            headerView.setTitle("Latest Results:")
-        case 2:
-            headerView.setTitle("Teams:")
-        default:
-            break
+        if leagueDetailsViewModel?.getSectionCount() != 0 {
+            print("hereeeeeeeeeeeeeeeee hi")
+            switch indexPath.section {
+            case 0:
+                headerView.setTitle("Upcoming Events:")
+            case 1:
+                headerView.setTitle("Latest Results:")
+            case 2:
+                headerView.setTitle("Teams:")
+            default:
+                break
+            }
+            
         }
-        
         return headerView
     }
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return leagueDetailsViewModel?.getSectionCount() ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -86,8 +123,8 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         case 0:
             return (leagueDetailsViewModel?.getUpcomingEventsCount())!
         case 1:
-           // return (leagueDetailsViewModel?.getLatestResultsCount())!
-            return 1
+            return (leagueDetailsViewModel?.getLatestResultsCount())!
+            //return 1
             
         case 2:
             return (leagueDetailsViewModel?.getTeamsListCount())!
@@ -156,14 +193,17 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        leagueDetailsViewModel?.setSelectedTeam(index: indexPath.row)
-    
         
-        let teamDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "team_details") as! TeamDetailsViewController
-    
-        teamDetailsScreen.leaguesDetailsViewModel = leagueDetailsViewModel
-        
-        self.present(teamDetailsScreen, animated: true)
+        if indexPath.section == 2{
+            leagueDetailsViewModel?.setSelectedTeam(index: indexPath.row)
+            
+            
+            let teamDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "team_details") as! TeamDetailsViewController
+            
+            teamDetailsScreen.leaguesDetailsViewModel = leagueDetailsViewModel
+            
+            self.present(teamDetailsScreen, animated: true)
+        }
     }
     
     
@@ -209,18 +249,19 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
 
 
     
+    @IBOutlet weak var emptyDataImage: UIImageView!
     func drawBottomSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(100))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.3))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.6), heightDimension: .fractionalHeight(0.25))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.6), heightDimension: .fractionalHeight(1))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 16, bottom: 16, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16)
         section.boundarySupplementaryItems = [
-            NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.2)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         ]
         return section
     }

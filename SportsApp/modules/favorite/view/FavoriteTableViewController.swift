@@ -67,7 +67,6 @@ class FavoriteTableViewController: UITableViewController {
         cell.lengueImage.kf.setImage(with: url , placeholder: UIImage(named: "football-player"))
         cell.lengueName.text = league?.league_name ?? "team \((league?.league_key)!)"
         
-        cell.layer.cornerRadius = 100
 
         cell.contentView.layer.shadowColor = UIColor.black.cgColor
         cell.contentView.layer.shadowOpacity = 0.5

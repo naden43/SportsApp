@@ -9,6 +9,8 @@
 import Foundation
 
 class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
+  
+    
     
     let network: NetworkHandlerProtocol
     var  favLeagueDataSource : FavouriteSportsDataSource
@@ -22,10 +24,14 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     var stopDate: String?
     var selectedLeague : LeagueData?
     var selectedTeam : TeamData?
+    var favDataSource : FavouriteSportsDataSource?
     
+    var upCompingMissed : Bool = false
     
   
-    init(network: NetworkHandler, selectedLeague : LeagueData, favLeagueDataSource : FavouriteSportsDataSource) {
+    init(network: NetworkHandler, selectedLeague : LeagueData, favLeagueDataSource : FavouriteSportsDataSource , favDataSource : FavouriteSportsDataSource) {
+        
+        self.favDataSource = favDataSource
         self.network = network
         self.favLeagueDataSource = favLeagueDataSource
         self.selectedLeague = selectedLeague
@@ -94,16 +100,25 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     }
      
     func loadUpcomingEvents() {
+        
+    
+        
         network.loadData(url: upcomingEventsEndPoint ?? "football?met=Fixtures&leagueId=205&from=2023-05-18&to=2024-05-18") {[weak self] (upcomingEventList:Event? , error) in
             
             
             guard let upcomingEventList = upcomingEventList else {
-                
+                self?.upcomingEventList = []
                 guard let error = error else{return}
                 print(error.localizedDescription)
                 return
             }
             self?.upcomingEventList = upcomingEventList.result
+            
+            print("herrrrrrrrrrrre\(upcomingEventList.result)")
+            if upcomingEventList.result ==  nil {
+                
+                self?.upcomingEventList = []
+            }
             
             self?.bindLeagueDetailsToList()
         }
@@ -118,12 +133,19 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
                  
                  guard let latestResultsList = latestResultsList else {
                      
+                     self?.latestResultsList = []
                      guard let error = error else{return}
                      print(error.localizedDescription)
                      return
                  }
                  
-                    self?.latestResultsList = latestResultsList.result
+                self?.latestResultsList = latestResultsList.result
+                 
+                 if latestResultsList.result == nil {
+                     self?.latestResultsList = []
+                 }
+                 
+                 
                     self?.getTeamInfo() // Call getTeamInfo after updating latestResultsList
 
                     self?.bindLeagueDetailsToList()
@@ -156,6 +178,50 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     func addLeagueToFav(){
         
         favLeagueDataSource.addFavLeague(league: selectedLeague!)
+        
+    }
+    
+    func getSectionCount() -> Int {
+        
+       
+        
+        if latestResultsList?.count == 0 && upcomingEventList?.count == 0 {
+            
+            
+            return 0
+        }
+        else if (upcomingEventList?.count == 0 && upcomingEventList
+                 != nil) && (latestResultsList?.count != 0 && latestResultsList != nil) {
+            upCompingMissed = true
+            return 3
+        }
+        else if upcomingEventList != nil  && latestResultsList != nil {
+            
+            if upcomingEventList == nil {
+                print(upcomingEventList?.count ?? 0  )
+                print(latestResultsList?.count ?? 3433
+                )
+            }
+            return 3
+        }
+        else if upcomingEventList == nil  && latestResultsList == nil{
+            return -1
+        }
+        else {
+            
+            return 0 
+
+        }
+    }
+    
+    func checkFavState() -> Bool {
+        
+        if favDataSource?.selectSpecificLeague(league: selectedLeague!) == nil {
+            return false
+        }
+        else {
+            return true
+        }
         
     }
     
