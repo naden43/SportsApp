@@ -9,45 +9,56 @@ import UIKit
 
 class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     var leagueDetailsViewModel : LeaguesDetailsViewModelProtocol?
+    var favViewModel :FavViewModel?
+    
+    
     
     @IBOutlet weak var favImage: UIButton!
     var leagueListViewModel : SharedLeagueDataViewModelProtocol?
     
     
     @IBOutlet weak var leaguesDetailsCollectionView: UICollectionView!
+    
+    @IBOutlet weak var backButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        
         
         leaguesDetailsCollectionView.dataSource = self
         leaguesDetailsCollectionView.delegate = self
         
-       
+        
         leaguesDetailsCollectionView.register(MyHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MyHeaderView.reuseIdentifier)
         
         
         leagueDetailsViewModel = LeaguesDetailsViewModel(network: NetworkHandler.instance, selectedLeague: (leagueListViewModel?.getSelectedLeague())!, favLeagueDataSource: FavouriteSportsDataSource.shared, favDataSource: FavouriteSportsDataSource.shared)
-        
+        favViewModel = FavViewModel(favLeaguesDataSource: FavouriteSportsDataSource.shared)
         
         setFav()
         
-        
+        let indecator = UIActivityIndicatorView(style: .large)
+        indecator.center = view.center
+        indecator.startAnimating()
+        view.addSubview(indecator)
         
         leagueDetailsViewModel?.implementBindLeagueDetailsToList(bindLeagueDetailsToList: ) {
-        
+            
+            indecator.stopAnimating()
             print(self.leagueDetailsViewModel?.getSectionCount())
             if self.leagueDetailsViewModel?.getSectionCount() == 0{
                 
-                self.emptyDataImage.image = UIImage(named: "empty-box")
+                // self.emptyDataImage.image = UIImage(named: "empty-box")
                 
             }
             else{
-                self.emptyDataImage.image = nil
-
+                // self.emptyDataImage.image = nil
+                
+                
                 self.leaguesDetailsCollectionView.reloadData()
             }
         }
-
+        
         
         leagueDetailsViewModel?.loadUpcomingEvents()
         leagueDetailsViewModel?.loadLatestResults()
@@ -80,9 +91,9 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         }
         else {
             print("enter here ")
-
+            
             favImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-
+            
         }
         
     }
@@ -123,14 +134,14 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         case 0:
             return (leagueDetailsViewModel?.getUpcomingEventsCount())!
         case 1:
-            return (leagueDetailsViewModel?.getLatestResultsCount())!
-            //return 1
+             return (leagueDetailsViewModel?.getLatestResultsCount())!
+            
             
         case 2:
             return (leagueDetailsViewModel?.getTeamsListCount())!
         default:
             break
-
+            
         }
         
         return 0
@@ -154,6 +165,8 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
             cell.eventName.text = upcomingEvent?.league_name
             cell.firstTeamName.text = upcomingEvent?.event_home_team
             cell.secondTeamName.text = upcomingEvent?.event_away_team
+            cell.eventDate.text = upcomingEvent?.event_date
+            cell.eventTime.text = upcomingEvent?.event_time
             
             return cell
         case 1:
@@ -171,6 +184,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
             
             cell.firstTeamName.text = latestResult?.event_home_team
             cell.secondTeamName.text = latestResult?.event_away_team
+            cell.scoreLabel.text = latestResult?.event_final_result
             
             return cell
             
@@ -180,11 +194,9 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
             let teamInfo = leagueDetailsViewModel?.getTeamsOfLeagueAtIndex(index: indexPath.row)
             
             if let homeTeamLogoString = teamInfo?.home_team_logo, let homeTeamLogoURL = URL(string: homeTeamLogoString) {
-               cell.teamImageView.kf.setImage(with: homeTeamLogoURL)
+                cell.teamImageView.kf.setImage(with: homeTeamLogoURL)
             }
- 
-          cell.teamName.text = teamInfo?.event_home_team
-    
+
             
             return cell
         default:
@@ -195,22 +207,61 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.section == 2{
-            leagueDetailsViewModel?.setSelectedTeam(index: indexPath.row)
-            
-            
-            let teamDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "team_details") as! TeamDetailsViewController
-            
-            teamDetailsScreen.leaguesDetailsViewModel = leagueDetailsViewModel
-            
-            self.present(teamDetailsScreen, animated: true)
+            if leagueDetailsViewModel?.checkReachability() == false {
+                
+                let alert = UIAlertController(title: nil, message: "Check your Internet Connection", preferredStyle: .actionSheet)
+                self.present(alert, animated: true, completion: nil)
+                
+                
+                DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 1){
+                    DispatchQueue.main.async {
+                        alert.dismiss(animated: true, completion: nil)
+                    }
+                    
+                }
+                
+            }else{
+                leagueDetailsViewModel?.setSelectedTeam(index: indexPath.row)
+                
+                
+                let teamDetailsScreen = self.storyboard?.instantiateViewController(withIdentifier: "team_details") as! TeamDetailsViewController
+                
+                teamDetailsScreen.leaguesDetailsViewModel = leagueDetailsViewModel
+                
+                self.present(teamDetailsScreen, animated: true)
+            }
+        
         }
     }
     
     
     @IBAction func btnFav(_ sender: Any) {
-        
-        leagueDetailsViewModel?.addLeagueToFav()
+        if leagueDetailsViewModel?.checkFavState() ?? false {
+            
+            
+            let alert = UIAlertController(title: "Favourite League", message: "Are you sure you want to delete it ? ", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive){_ in
+                
+                self.leagueDetailsViewModel?.deleteLeagueFromFav()
+                self.favImage.setImage(UIImage(systemName: "heart"), for: .normal)
+                
+            })
+            alert.addAction(UIAlertAction(title: "No", style: .default))
+            
+            present(alert, animated: true)
+            
+        } else {
+            
+            leagueDetailsViewModel?.addLeagueToFav()
+            
+            favImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            showSavedFavoriteItem()
+        }
     }
+    
+    
+    
     
     
     func drawTopSection() -> NSCollectionLayoutSection {
@@ -232,22 +283,22 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     
     func drawCenterSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1.0))
-         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.18))
-         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
-         
-         let section = NSCollectionLayoutSection(group: group)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-         section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 16, bottom: 16, trailing: 16)
-         section.boundarySupplementaryItems = [
-             NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-         ]
-         return section
-     }
-
-
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.13))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 8, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 16, bottom: 16, trailing: 16)
+        section.boundarySupplementaryItems = [
+            NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        ]
+        return section
+    }
+    
+    
     
     @IBOutlet weak var emptyDataImage: UIImageView!
     func drawBottomSection() -> NSCollectionLayoutSection {
@@ -267,5 +318,28 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     }
     
     
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    func showSavedFavoriteItem() {
+        let alert = UIAlertController(title: "League saved as favorite!", message: nil, preferredStyle: .actionSheet)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func checkInternetConnection(){
+        
+   
+        
+
+    }
+    
+    
 }
-  
+
+
+

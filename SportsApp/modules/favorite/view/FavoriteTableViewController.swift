@@ -64,7 +64,7 @@ class FavoriteTableViewController: UITableViewController {
 
         let league = favViewModel?.getFavAtIndex(index: indexPath.row)
         let url = URL(string: league?.league_logo ?? league?.country_logo ?? "")
-        cell.lengueImage.kf.setImage(with: url , placeholder: UIImage(named: "football-player"))
+        cell.lengueImage.kf.setImage(with: url , placeholder: UIImage(named: "leaguePlaceHolder"))
         cell.lengueName.text = league?.league_name ?? "team \((league?.league_key)!)"
         
 

@@ -74,9 +74,9 @@ class TeamDetailsViewController: UIViewController , UICollectionViewDataSource ,
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-        //return teamDetailsViewModel?.getTeamsListCount() ?? 0
-        //return teamDetailsViewModel?.getTeamDetailsAtIndex(index: section.in)
+        //return 10
+        return teamDetailsViewModel?.getTeamDetailsAtIndex(index: section)?.players?.count ?? 0
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

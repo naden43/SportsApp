@@ -15,6 +15,7 @@ class TeamDetailViewModel : TeamDetailsViewModelProtocol{
     var selectedLeague : LeagueData?
     var endPointUrl : String?
     var teamsList : [Team]?
+    var playersCount: Int?
     
     init(network: NetworkHandler , selectedTeam: TeamData , selectedLeague: LeagueData) {
         self.network = network
@@ -31,6 +32,7 @@ class TeamDetailViewModel : TeamDetailsViewModelProtocol{
     
     func implementBindTeamDetailsToList(bindTeamDetailsToList: @escaping () -> Void) {
         self.bindTeamDetailsToList = bindTeamDetailsToList
+        
 
     }
 
@@ -57,11 +59,13 @@ class TeamDetailViewModel : TeamDetailsViewModelProtocol{
     
     func getTeamDetailsAtIndex(index: Int) -> Team? {
         guard let teamsList = teamsList, index < teamsList.count else {
+            
             return nil
         }
         
         let team = teamsList[index]
-                if let teamName = team.team_name {
+     
+       if let teamName = team.team_name {
             print("Team Name: \(teamName)")
         }
         

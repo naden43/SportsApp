@@ -15,11 +15,9 @@ class LeagueTeamCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // Make the cell rounded
-        self.layer.cornerRadius = 10 // Adjust the corner radius as needed
+        self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
         
-        // Make the image rounded
         teamImageView.layer.cornerRadius = teamImageView.bounds.width / 2
         teamImageView.layer.masksToBounds = true
     }

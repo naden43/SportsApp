@@ -49,14 +49,32 @@ class HomeCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        homeViewModel?.setSelectedSport(index: indexPath.row)
-        print("setSelectedSport \(homeViewModel?.getSelectedSport())")
+       
         
-        let allLeaguesVc = self.storyboard?.instantiateViewController(identifier: "leaguesListScreen") as! LeaguesTableViewController
-        
-        allLeaguesVc.homeViewModel = self.homeViewModel
-        
-        self.navigationController?.pushViewController(allLeaguesVc, animated: true)
+        if homeViewModel?.checkReachability() == true {
+            homeViewModel?.setSelectedSport(index: indexPath.row)
+            print("setSelectedSport \(homeViewModel?.getSelectedSport())")
+            
+            let allLeaguesVc = self.storyboard?.instantiateViewController(identifier: "leaguesListScreen") as! LeaguesTableViewController
+            
+            allLeaguesVc.homeViewModel = self.homeViewModel
+            
+            self.navigationController?.pushViewController(allLeaguesVc, animated: true)
+
+        }
+        else{
+            
+            let alert = UIAlertController(title: nil, message: "Check your Internet Connection", preferredStyle: .actionSheet)
+                   self.present(alert, animated: true, completion: nil)
+            
+            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 1){
+                DispatchQueue.main.async {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                
+            }
+        }
+
         
     }
     

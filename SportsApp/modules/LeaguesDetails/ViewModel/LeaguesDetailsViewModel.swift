@@ -7,6 +7,7 @@
 
 
 import Foundation
+import Reachability
 
 class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
   
@@ -25,10 +26,11 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
     var selectedLeague : LeagueData?
     var selectedTeam : TeamData?
     var favDataSource : FavouriteSportsDataSource?
+ 
     
     var upCompingMissed : Bool = false
     
-  
+    let reachability = try! Reachability()
     init(network: NetworkHandler, selectedLeague : LeagueData, favLeagueDataSource : FavouriteSportsDataSource , favDataSource : FavouriteSportsDataSource) {
         
         self.favDataSource = favDataSource
@@ -101,7 +103,6 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
      
     func loadUpcomingEvents() {
         
-    
         
         network.loadData(url: upcomingEventsEndPoint ?? "football?met=Fixtures&leagueId=205&from=2023-05-18&to=2024-05-18") {[weak self] (upcomingEventList:Event? , error) in
             
@@ -114,7 +115,6 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
             }
             self?.upcomingEventList = upcomingEventList.result
             
-            print("herrrrrrrrrrrre\(upcomingEventList.result)")
             if upcomingEventList.result ==  nil {
                 
                 self?.upcomingEventList = []
@@ -146,7 +146,7 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
                  }
                  
                  
-                    self?.getTeamInfo() // Call getTeamInfo after updating latestResultsList
+                    self?.getTeamInfo()
 
                     self?.bindLeagueDetailsToList()
                 }
@@ -179,6 +179,11 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
         
         favLeagueDataSource.addFavLeague(league: selectedLeague!)
         
+    }
+    
+    func deleteLeagueFromFav(){
+        favLeagueDataSource.deleteFavLeague(league: selectedLeague!)
+
     }
     
     func getSectionCount() -> Int {
@@ -244,5 +249,21 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
             print("latestResultsList is nil")
         }
     }
+    
+    
+    func checkReachability() -> Bool {
+        
+        switch reachability.connection {
+            
+            case .unavailable:
+                return false
+            case .wifi , .cellular:
+                return true
+    
+        }
+    }
 
 }
+
+
+

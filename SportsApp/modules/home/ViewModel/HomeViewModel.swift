@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import Reachability
 
 class HomeViewModel{
     
     var selectedSport:String?
+    let reachability = try! Reachability()
+
     
     // Dummy data array
     let sports: [Sport] = [
@@ -34,6 +37,18 @@ class HomeViewModel{
     
     func getSelectedSport()->String{
          return selectedSport!
+    }
+    
+    func checkReachability() -> Bool {
+        
+        switch reachability.connection {
+            
+            case .unavailable:
+                return false
+            case .wifi , .cellular:
+                return true
+    
+        }
     }
     
 

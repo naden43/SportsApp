@@ -26,6 +26,7 @@ protocol LeaguesDetailsViewModelProtocol {
     func checkFavState() -> Bool
     func addLeagueToFav()
     func getTeamInfo()
-    
+    func deleteLeagueFromFav()
+    func checkReachability() -> Bool
     
 }
