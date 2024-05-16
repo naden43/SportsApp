@@ -198,7 +198,14 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
         else if (upcomingEventList?.count == 0 && upcomingEventList
                  != nil) && (latestResultsList?.count != 0 && latestResultsList != nil) {
             upCompingMissed = true
-            return 3
+            
+            if selectedLeague?.sport_name == "cricket" || selectedLeague?.sport_name == "tennis" {
+                
+                return 2
+            }
+            else{
+                return 3
+            }
         }
         else if upcomingEventList != nil  && latestResultsList != nil {
             
@@ -207,7 +214,14 @@ class LeaguesDetailsViewModel: LeaguesDetailsViewModelProtocol {
                 print(latestResultsList?.count ?? 3433
                 )
             }
-            return 3
+            
+            if selectedLeague?.sport_name == "cricket" || selectedLeague?.sport_name == "tennis" {
+                
+                return 2
+            }
+            else{
+                return 3
+            }
         }
         else if upcomingEventList == nil  && latestResultsList == nil{
             return -1

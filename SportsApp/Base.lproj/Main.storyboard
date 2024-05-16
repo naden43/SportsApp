@@ -246,31 +246,31 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahly" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gch-m6-VlG">
-                                                    <rect key="frame" x="8" y="16" width="33.333333333333336" height="20"/>
+                                                    <rect key="frame" x="8" y="15.999999999999998" width="81.333333333333329" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="z3R-Cj-qQ2">
-                                                    <rect key="frame" x="199.33333333333334" y="15.999999999999998" width="31.333333333333343" height="31.333333333333329"/>
+                                                    <rect key="frame" x="183.33333333333334" y="15.999999999999998" width="31.333333333333343" height="31.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="z3R-Cj-qQ2" secondAttribute="height" multiplier="1:1" id="nUd-QD-0dN"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zamalek" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGV-Ho-3tD">
-                                                    <rect key="frame" x="238.66666666666666" y="16" width="65.333333333333343" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Zamalek" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGV-Ho-3tD">
+                                                    <rect key="frame" x="222.66666666666666" y="15.999999999999998" width="81.333333333333343" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1:0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtp-no-82L">
-                                                    <rect key="frame" x="96.666666666666671" y="32" width="22.666666666666671" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:0" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtp-no-82L">
+                                                    <rect key="frame" x="144.66666666666666" y="33" width="22.666666666666657" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football-player" translatesAutoresizingMaskIntoConstraints="NO" id="hY3-ec-Vdf">
-                                                    <rect key="frame" x="49.333333333333336" y="15.999999999999998" width="31.333333333333336" height="31.333333333333329"/>
+                                                    <rect key="frame" x="97.333333333333329" y="15.999999999999998" width="31.333333333333329" height="31.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="hY3-ec-Vdf" secondAttribute="height" multiplier="1:1" id="pzM-5d-mzF"/>
                                                     </constraints>
@@ -283,6 +283,8 @@
                                                 <constraint firstItem="z3R-Cj-qQ2" firstAttribute="width" secondItem="xs6-8R-vDA" secondAttribute="width" multiplier="0.1" id="864-Rc-dhd"/>
                                                 <constraint firstItem="z3R-Cj-qQ2" firstAttribute="top" secondItem="xs6-8R-vDA" secondAttribute="top" constant="16" id="9jv-Hm-qgw"/>
                                                 <constraint firstItem="Gch-m6-VlG" firstAttribute="leading" secondItem="xs6-8R-vDA" secondAttribute="leading" constant="8" id="AFB-xx-FHD"/>
+                                                <constraint firstItem="z3R-Cj-qQ2" firstAttribute="leading" secondItem="Gtp-no-82L" secondAttribute="trailing" constant="16" id="FoY-IK-kO1"/>
+                                                <constraint firstItem="Gtp-no-82L" firstAttribute="leading" secondItem="hY3-ec-Vdf" secondAttribute="trailing" constant="16" id="KGi-ff-s9p"/>
                                                 <constraint firstAttribute="trailing" secondItem="lGV-Ho-3tD" secondAttribute="trailing" constant="8" id="ahN-nu-bf7"/>
                                                 <constraint firstItem="lGV-Ho-3tD" firstAttribute="top" secondItem="xs6-8R-vDA" secondAttribute="top" constant="16" id="eWy-Vt-4Mr"/>
                                                 <constraint firstItem="Gtp-no-82L" firstAttribute="centerX" secondItem="xs6-8R-vDA" secondAttribute="centerX" id="gBc-A2-Ceu"/>
@@ -302,14 +304,14 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamCell" id="0VJ-ZX-wFZ" customClass="LeagueTeamCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
-                                        <rect key="frame" x="101" y="322" width="188" height="162"/>
+                                        <rect key="frame" x="146" y="322" width="98" height="101"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Whf-lj-7ZR">
-                                            <rect key="frame" x="0.0" y="0.0" width="188" height="162"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="98" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Tennis_image" translatesAutoresizingMaskIntoConstraints="NO" id="Ixc-nt-spZ">
-                                                    <rect key="frame" x="16" y="16" width="94" height="94"/>
+                                                    <rect key="frame" x="16" y="16" width="49" height="49"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Ixc-nt-spZ" secondAttribute="height" multiplier="1:1" id="Y1y-EQ-ZQt"/>
                                                     </constraints>
@@ -323,7 +325,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" name="PrimaryColor"/>
-                                        <size key="customSize" width="188" height="162"/>
+                                        <size key="customSize" width="98" height="101"/>
                                         <connections>
                                             <outlet property="teamImageView" destination="Ixc-nt-spZ" id="WNu-4Y-a0p"/>
                                         </connections>
@@ -333,27 +335,35 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inN-pH-7Hr">
                                 <rect key="frame" x="15" y="52" width="35" height="34"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="leftArrow.png" title=""/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=""/>
                                 <connections>
                                     <action selector="backButton:" destination="Vcl-6h-cVF" eventType="touchUpInside" id="ktW-vs-aGA"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9lT-qj-DFl">
+                                <rect key="frame" x="0.0" y="600" width="390" height="244"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ILI-o9-WdJ"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
                         <constraints>
                             <constraint firstItem="inN-pH-7Hr" firstAttribute="height" secondItem="Blt-yf-3ZP" secondAttribute="height" multiplier="0.0402844" id="0Ay-VL-ecW"/>
+                            <constraint firstItem="9lT-qj-DFl" firstAttribute="leading" secondItem="ILI-o9-WdJ" secondAttribute="leading" id="7nJ-om-pY7"/>
+                            <constraint firstAttribute="trailing" secondItem="9lT-qj-DFl" secondAttribute="trailing" id="8QM-8p-st0"/>
                             <constraint firstItem="U9U-dT-GeR" firstAttribute="height" secondItem="Blt-yf-3ZP" secondAttribute="height" multiplier="0.0402844" id="9Ca-0V-mEa"/>
                             <constraint firstItem="U9U-dT-GeR" firstAttribute="top" secondItem="ILI-o9-WdJ" secondAttribute="top" constant="15" id="N9b-k1-6mw"/>
                             <constraint firstItem="inN-pH-7Hr" firstAttribute="top" secondItem="ILI-o9-WdJ" secondAttribute="top" constant="5" id="NKj-qI-wkU"/>
+                            <constraint firstItem="9lT-qj-DFl" firstAttribute="top" secondItem="Blt-yf-3ZP" secondAttribute="top" id="PcT-ft-rIs"/>
                             <constraint firstItem="ILI-o9-WdJ" firstAttribute="trailing" secondItem="U9U-dT-GeR" secondAttribute="trailing" constant="15" id="amh-W9-jJ3"/>
                             <constraint firstItem="U9U-dT-GeR" firstAttribute="width" secondItem="Blt-yf-3ZP" secondAttribute="width" multiplier="0.0897436" id="jGw-Rl-dGW"/>
+                            <constraint firstAttribute="bottom" secondItem="9lT-qj-DFl" secondAttribute="bottom" id="lkI-ID-3Sx"/>
                             <constraint firstItem="inN-pH-7Hr" firstAttribute="leading" secondItem="ILI-o9-WdJ" secondAttribute="leading" constant="15" id="nxv-Db-vpU"/>
                             <constraint firstItem="inN-pH-7Hr" firstAttribute="width" secondItem="Blt-yf-3ZP" secondAttribute="width" multiplier="0.0897436" id="zjT-yy-wt5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="inN-pH-7Hr" id="ibf-QJ-ufQ"/>
+                        <outlet property="emptyIndecatorImage" destination="9lT-qj-DFl" id="HOS-I6-hFS"/>
                         <outlet property="favImage" destination="U9U-dT-GeR" id="gze-2b-wof"/>
                         <outlet property="leaguesDetailsCollectionView" destination="hZp-0K-UAh" id="sKC-lu-qD9"/>
                     </connections>
@@ -679,10 +689,10 @@
         <image name="Tennis.png" width="512" height="423"/>
         <image name="Tennis_image" width="512" height="423"/>
         <image name="football-player" width="512" height="512"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart" catalog="system" width="32" height="32"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
-        <image name="house.fill" catalog="system" width="128" height="104"/>
-        <image name="leftArrow.png" width="48" height="48"/>
+        <image name="house.fill" catalog="system" width="32" height="32"/>
+        <image name="left-arrow-2" width="24" height="24"/>
         <image name="logo" width="1920" height="1920"/>
         <image name="player" width="150" height="150"/>
         <namedColor name="AccentColor">

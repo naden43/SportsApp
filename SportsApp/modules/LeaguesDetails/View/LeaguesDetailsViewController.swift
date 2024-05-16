@@ -12,6 +12,7 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     var favViewModel :FavViewModel?
     
     
+    @IBOutlet weak var emptyIndecatorImage: UIImageView!
     
     @IBOutlet weak var favImage: UIButton!
     var leagueListViewModel : SharedLeagueDataViewModelProtocol?
@@ -48,13 +49,11 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
             print(self.leagueDetailsViewModel?.getSectionCount())
             if self.leagueDetailsViewModel?.getSectionCount() == 0{
                 
-                // self.emptyDataImage.image = UIImage(named: "empty-box")
+                self.emptyIndecatorImage.image = UIImage(named: "empty-box")
                 
             }
             else{
-                // self.emptyDataImage.image = nil
-                
-                
+                self.emptyIndecatorImage.image = nil
                 self.leaguesDetailsCollectionView.reloadData()
             }
         }
@@ -182,6 +181,14 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
                 cell.secondTeamPadge.kf.setImage(with: awayTeamLogoURL)
             }
             
+            if latestResult?.event_home_team == "" {
+                latestResult?.event_home_team = "Team 1"
+            }
+            
+            if latestResult?.event_away_team == "" {
+                latestResult?.event_away_team = "Team 2"
+            }
+            
             cell.firstTeamName.text = latestResult?.event_home_team
             cell.secondTeamName.text = latestResult?.event_away_team
             cell.scoreLabel.text = latestResult?.event_final_result
@@ -251,6 +258,8 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
             
             present(alert, animated: true)
             
+           
+            
         } else {
             
             leagueDetailsViewModel?.addLeagueToFav()
@@ -277,6 +286,17 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         ]
+        
+        // animation
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+        items.forEach { item in
+        let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+        let minScale: CGFloat = 0.8
+        let maxScale: CGFloat = 1.0
+        let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+        item.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+        }
         return section
     }
     
@@ -300,20 +320,31 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
     
     
     
-    @IBOutlet weak var emptyDataImage: UIImageView!
     func drawBottomSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.3))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.6), heightDimension: .fractionalHeight(1))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(0.3))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0)
         section.boundarySupplementaryItems = [
             NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.2)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         ]
+        
+        // animation
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+        items.forEach { item in
+        let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+        let minScale: CGFloat = 0.8
+        let maxScale: CGFloat = 1.0
+        let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+        item.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+        }
+
         return section
     }
     
@@ -328,6 +359,14 @@ class LeaguesDetailsViewController: UIViewController,UICollectionViewDataSource,
         let alert = UIAlertController(title: "League saved as favorite!", message: nil, preferredStyle: .actionSheet)
         
         present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 1){
+            DispatchQueue.main.async {
+                alert.dismiss(animated: true, completion: nil)
+            }
+            
+        }
+        
     }
     
     

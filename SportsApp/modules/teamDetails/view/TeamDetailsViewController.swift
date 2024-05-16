@@ -34,6 +34,11 @@ class TeamDetailsViewController: UIViewController , UICollectionViewDataSource ,
         
         
         teamDetailsViewModel?.implementBindTeamDetailsToList {
+            
+            self.teamName.text = self.teamDetailsViewModel?.getTeamDetailsAtIndex(index: 0)?.team_name
+            
+            let url = URL(string: self.teamDetailsViewModel?.getTeamDetailsAtIndex(index: 0)?.team_logo ?? "")
+            self.teamImage.kf.setImage(with: url)
             self.playerCollectionView.reloadData()
 
         }
